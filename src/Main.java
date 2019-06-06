@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
  
-//TODO: Josh Ellenbogen, Alex Kashian
+//TODO: PUT YOUR NAME HERE
  
 public class Main extends JPanel {
  
@@ -11,21 +11,9 @@ public class Main extends JPanel {
     public static final int FRAMEWIDTH = 1000, FRAMEHEIGHT = 600;
     private Timer timer;
     private boolean[] keys;
-    private Sprite arrow1, arrow2, arrow3, arrow4;
-    private ArrayList<Sprite> arrows;
-
+ 
     public Main() {
-        keys = new boolean[512];
-
-        arrows = new ArrayList<Sprite>();
-
-        arrow1 = new BlackArrow(20, 20, Sprite.WEST);
-        arrow2 = new BlackArrow(220, 20, Sprite.SOUTH);
-        arrow3 = new BlackArrow(440, 20, Sprite.NORTH);
-        arrow4 = new BlackArrow(660, 20, Sprite.EAST);
-
-
-
+        keys = new boolean[512]; //should be enough to hold any key code.
 
         timer = new Timer(40, new ActionListener() {
             @Override
@@ -56,10 +44,6 @@ public class Main extends JPanel {
 
         }
 
-        arrow1.draw(g2);
-        arrow2.draw(g2);
-        arrow3.draw(g2);
-        arrow4.draw(g2);
 
     }
 

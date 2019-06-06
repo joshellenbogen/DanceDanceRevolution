@@ -24,7 +24,13 @@ public class Main extends JPanel {
         arrow3 = new BlackArrow(440, 20, Sprite.NORTH);
         arrow4 = new BlackArrow(660, 20, Sprite.EAST);
 
-        arrows.add(new BlueArrow1(500, 700, Sprite.NORTH));
+        arrows.add(new BlueArrow1(436, 700, Sprite.NORTH));
+        arrows.add(new BlueArrow2(216, 700, Sprite.NORTH));
+        arrows.add(new BlueArrow3(0, 700, Sprite.NORTH));
+        arrows.add(new BlueArrow4(670, 700, Sprite.NORTH));
+
+
+
 
 
         timer = new Timer(40, new ActionListener() {

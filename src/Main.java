@@ -29,6 +29,23 @@ public class Main extends JPanel {
     }
  
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.white);
+        g2.fillRect(0,0,1000,800);
+
+        for (int i = 10; i < 1000; i+=50) {
+            for (int j = 10; j < 800; j+=50) {
+                g2.setColor(new Color(255,218,33));
+                g2.fillRect(i,j,20,20);
+
+
+            }
+
+        }
+
+
+
     }
 
     public void setKeyListener() {

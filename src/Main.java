@@ -1,7 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
+
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
  
 //TODO: Josh Ellenbogen, Alex Kashian
 
@@ -13,6 +18,7 @@ public class Main extends JPanel {
     private boolean[] keys;
     private Sprite arrow1, arrow2, arrow3, arrow4;
     private ArrayList<Sprite> arrows;
+    private javafx.scene.media.MediaPlayer mediaPlayer;
 
     public Main() {
         keys = new boolean[512];
@@ -29,19 +35,21 @@ public class Main extends JPanel {
         arrows.add(new BlueArrow3(0, 700, Sprite.NORTH));
         arrows.add(new BlueArrow4(670, 700, Sprite.NORTH));
 
-
-
-
-
         timer = new Timer(40, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                for(Sprite s: arrows){
+                for (Sprite s : arrows) {
                     s.update();
                 }
                 repaint();
             }
         });
+        JFXPanel fxPanel = new JFXPanel();
+        String love = "./res/ILoveIt.mp3";
+        Media song = new Media(new File(love).toURI().toString());
+        mediaPlayer = new MediaPlayer(song);
+        mediaPlayer.play();
+
         timer.start();
 
         setKeyListener();

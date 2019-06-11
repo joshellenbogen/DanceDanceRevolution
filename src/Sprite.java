@@ -4,10 +4,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
- 
-/**
- * This class models a rectangular movable object on the screen.  It is drawn using an image.
- */
+
+
 public class Sprite {
  
     public static final int NORTH = 90, SOUTH = 270, WEST = 180, EAST = 0, NE = 45, NW = 135, SW = 225, SE = 315;
@@ -28,13 +26,7 @@ public class Sprite {
         id = nextID;
         nextID++;
     }
- 
-    /**
-     * Changes the image file that this Sprite uses to draw.
-     * Assumes the file is in the res folder.
-     * @param fileName    the case-sensitive file name
-     * @param orientation the direction that the image file is facing
-     */
+
     public void setPic(String fileName, int orientation) {
         try {
             pic = ImageIO.read(new File("res/" + fileName));
@@ -43,10 +35,7 @@ public class Sprite {
             e.printStackTrace();
         }
     }
- 
-    /**
-     * This draws the image pic at the Point loc, rotated to face dir.
-     */
+
     public void draw(Graphics2D g2) {
         double rotationRequired = Math.toRadians(picOrientation - dir);
         double halfWidth = pic.getWidth() / 2;
@@ -55,28 +44,17 @@ public class Sprite {
         g2.drawImage(pic, loc.x, loc.y, null);
         g2.rotate(-rotationRequired, loc.x + halfWidth, loc.y + halfHeight);
     }
- 
-    /**
-     * Moves the pic in the direction the Sprite is facing (dir).
-     */
+
     public void update() {
         int dx = (int) (Math.cos(Math.toRadians(dir)) * speed);
         int dy = -(int) (Math.sin(Math.toRadians(dir)) * speed);
         loc.translate(dx, dy);
     }
- 
-    /**
-     * Returns true if this Sprite intersects the other Sprite
-     */
+
     public boolean intersects(Sprite other) {
         return getBoundingRectangle().intersects(other.getBoundingRectangle());
     }
- 
-    /**
-     * Changes the direction the Sprite is facing by the given angle.
-     *
-     * @param delta change in angle measured in degrees
-     */
+
     public void rotateBy(int delta) {
         setDir(dir + delta);
     }

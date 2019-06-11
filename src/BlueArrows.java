@@ -7,12 +7,18 @@ public class BlueArrows extends Sprite {
 
         if(direction == NORTH){
             setPic("BlueArrow.png", NORTH);
+            setDir(NORTH);
         }else if (direction == SOUTH){
             setPic("BlueArrow.png", SOUTH);
+            setDir(NORTH);
         }else if(direction == EAST){
             setPic("BlueArrow.png", EAST);
+            setDir(NORTH);
+
         }else if(direction == WEST){
             setPic("BlueArrow.png", WEST);
+            setDir(NORTH);
+
         }
 
         setSpeed(5);

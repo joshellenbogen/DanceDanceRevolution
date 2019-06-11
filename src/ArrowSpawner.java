@@ -12,14 +12,14 @@ public class ArrowSpawner extends Sprite {
         arrows = new ArrayList<>();
     }
 
-    public void update(Graphics2D g2){
-        for(BlueArrows arrow : arrows){
-            arrow.draw(g2);
-        }
-    }
+//    public void update(Graphics2D g2){
+//        for(BlueArrows arrow : arrows){
+//            arrow.draw(g2);
+//        }
+//    }
 
-    public void spawn(){
-        arrows.add(new BlueArrows(getLoc().x, getLoc().y, getDir()));
+    public BlueArrows spawn(){
+        return new BlueArrows(getLoc().x, getLoc().y, getDir());
 
     }
 

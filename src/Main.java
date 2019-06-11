@@ -21,16 +21,18 @@ public class Main extends JPanel {
     private ArrayList<ArrowSpawner> arrowSpawners;
     private javafx.scene.media.MediaPlayer mediaPlayer;
     private boolean a1, a2, a3, a4;
+    private ArrayList<BlueArrows> movingArrows;
 
     public Main() {
         keys = new boolean[512];
 
         arrowSpawners = new ArrayList();
+        movingArrows = new ArrayList<>();
 
-        arrowSpawners.add(new ArrowSpawner(20, 20, ArrowSpawner.WEST));
-        arrowSpawners.add(new ArrowSpawner(220, 20, ArrowSpawner.SOUTH));
-        arrowSpawners.add(new ArrowSpawner(440, 20, ArrowSpawner.NORTH));
-        arrowSpawners.add(new ArrowSpawner(660, 20, ArrowSpawner.EAST));
+        arrowSpawners.add(new ArrowSpawner(5, 800, ArrowSpawner.EAST));
+        arrowSpawners.add(new ArrowSpawner(205, 800, ArrowSpawner.SOUTH));
+        arrowSpawners.add(new ArrowSpawner(435, 800, ArrowSpawner.NORTH));
+        arrowSpawners.add(new ArrowSpawner(660, 800, ArrowSpawner.WEST));
 
         arrow1 = new BlackArrow(20, 20, Sprite.WEST);
         arrow2 = new BlackArrow(220, 20, Sprite.SOUTH);
@@ -41,6 +43,10 @@ public class Main extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                //loop to move all blue arrows
+                for(BlueArrows b: movingArrows)
+                    b.update();
+
                 repaint();
             }
         });
@@ -53,10 +59,11 @@ public class Main extends JPanel {
 
         timer.start();
 
-        Timer spawnArrows = new Timer(1000, new ActionListener() {
+        Timer spawnArrows = new Timer(1500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                arrowSpawners.get(new Random().nextInt(4)).spawn();
+                movingArrows.add(arrowSpawners.get((int)(Math.random()*4)).spawn());
+
             }
         });
 
@@ -85,12 +92,12 @@ public class Main extends JPanel {
         arrow2.draw(g2);
         arrow3.draw(g2);
         arrow4.draw(g2);
+        for(BlueArrows b: movingArrows)
+            b.draw(g2);
 
-        for(ArrowSpawner arrowSpawner : arrowSpawners){
-            arrowSpawner.draw(g2);
-        }
 
-        }
+
+    }
 
         public void setKeyListener () {
             addKeyListener(new KeyListener() {
@@ -116,21 +123,23 @@ public class Main extends JPanel {
                         a4 = true;
                     }
 
-                    for (Sprite spr : arrowSpawners) {
-                        if (a1 == true && spr.getLoc().y >0 && spr.getLoc().y < 70)
+                    for (Sprite spr : movingArrows) {
+                        if (a1 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             count++;
-                        if (a2 == true && spr.getLoc().y >0 && spr.getLoc().y < 70)
+                        }
+                        if (a2 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             count++;
-                        if (a3 == true && spr.getLoc().y >0 && spr.getLoc().y < 70)
-                            if(spr.getLoc().x < 460 && spr.getLoc().x > 420)
+                        }
+                        if (a3 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
+                            if (spr.getLoc().x < 460 && spr.getLoc().x > 420)
                                 count++;
-                        if (a4 == true && spr.getLoc().y >0 && spr.getLoc().y < 70)
+                        }
+                        if (a4 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             count++;
-
+                        }
                         System.out.println(count);
 
                     }
-
 
                     a1 = false;
                     a2 = false;

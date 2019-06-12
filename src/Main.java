@@ -22,9 +22,12 @@ public class Main extends JPanel {
     private javafx.scene.media.MediaPlayer mediaPlayer;
     private boolean a1, a2, a3, a4;
     private ArrayList<BlueArrows> movingArrows;
+    private int counter = 0;
 
     public Main() {
         keys = new boolean[512];
+
+
 
         arrowSpawners = new ArrayList();
         movingArrows = new ArrayList<>();
@@ -53,13 +56,16 @@ public class Main extends JPanel {
         JFXPanel fxPanel = new JFXPanel();
         String aLot = "./res/ALot.mp3";
         String love = "./res/ILoveIt.mp3";
-        Media song = new Media(new File(aLot).toURI().toString());
+        String hey = "./res/HeyYa.mp3";
+        Media song = new Media(new File(hey).toURI().toString());
         mediaPlayer = new MediaPlayer(song);
         mediaPlayer.play();
 
         timer.start();
 
-        Timer spawnArrows = new Timer(1500, new ActionListener() {
+
+        //Frequecy of arrows timer
+        Timer spawnArrows = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 movingArrows.add(arrowSpawners.get((int)(Math.random()*4)).spawn());
@@ -97,9 +103,11 @@ public class Main extends JPanel {
 
 
 
+
     }
 
         public void setKeyListener () {
+
             addKeyListener(new KeyListener() {
                 @Override
                 public void keyTyped(KeyEvent keyEvent) {/*intentionally left blank*/ }
@@ -109,7 +117,6 @@ public class Main extends JPanel {
                 public void keyPressed(KeyEvent keyEvent) {
                     keys[keyEvent.getKeyCode()] = true;
 
-                    int count = 0;
                     if (keyEvent.VK_LEFT == keyEvent.getKeyCode()){
                         a1 = true;
                     }
@@ -124,20 +131,27 @@ public class Main extends JPanel {
                     }
 
                     for (Sprite spr : movingArrows) {
-                        if (a1 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
-                            count++;
+                        if (a1 == true && spr.getLoc().y >0 && spr.getLoc().y < 50) {
+                            if (spr.getLoc().x < 70 && spr.getLoc().x > 0)
+                                movingArrows.remove(spr);
+                                counter++;
                         }
-                        if (a2 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
-                            count++;
+                        if (a2 == true && spr.getLoc().y >0 && spr.getLoc().y < 50) {
+                            if (spr.getLoc().x < 230 && spr.getLoc().x > 180)
+                                movingArrows.remove(spr);
+                            counter++;
                         }
-                        if (a3 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
+                        if (a3 == true && spr.getLoc().y >0 && spr.getLoc().y < 50) {
                             if (spr.getLoc().x < 460 && spr.getLoc().x > 420)
-                                count++;
+                                movingArrows.remove(spr);
+                            counter++;
                         }
-                        if (a4 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
-                            count++;
+                        if (a4 == true && spr.getLoc().y >0 && spr.getLoc().y < 50) {
+                            if (spr.getLoc().x < 690 && spr.getLoc().x > 630)
+                                movingArrows.remove(spr);
+                            counter++;
                         }
-                        System.out.println(count);
+                        System.out.println(counter);
 
                     }
 

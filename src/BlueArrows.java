@@ -21,7 +21,7 @@ public class BlueArrows extends Sprite {
 
         }
 
-        setSpeed(5);
+        setSpeed(10);
     }
 
 

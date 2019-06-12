@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
-
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -27,8 +25,6 @@ public class Main extends JPanel {
     public Main() {
         keys = new boolean[512];
 
-
-
         arrowSpawners = new ArrayList();
         movingArrows = new ArrayList<>();
 
@@ -37,10 +33,10 @@ public class Main extends JPanel {
         arrowSpawners.add(new ArrowSpawner(435, 800, ArrowSpawner.NORTH));
         arrowSpawners.add(new ArrowSpawner(660, 800, ArrowSpawner.WEST));
 
-        arrow1 = new BlackArrow(20, 20, Sprite.WEST);
-        arrow2 = new BlackArrow(220, 20, Sprite.SOUTH);
-        arrow3 = new BlackArrow(440, 20, Sprite.NORTH);
-        arrow4 = new BlackArrow(660, 20, Sprite.EAST);
+        arrow1 = new BlackArrow(20, 50, Sprite.WEST);
+        arrow2 = new BlackArrow(220, 50, Sprite.SOUTH);
+        arrow3 = new BlackArrow(440, 50, Sprite.NORTH);
+        arrow4 = new BlackArrow(660, 50, Sprite.EAST);
 
         timer = new Timer(40, new ActionListener() {
 
@@ -84,23 +80,24 @@ public class Main extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.white);
         g2.fillRect(0, 0, 1000, 800);
-
         for (int i = 10; i < 1000; i += 50) {
             for (int j = 10; j < 800; j += 50) {
                 g2.setColor(new Color(255, 218, 33));
                 g2.fillRect(i, j, 20, 20);
-
-
             }
-
         }
         arrow1.draw(g2);
         arrow2.draw(g2);
         arrow3.draw(g2);
         arrow4.draw(g2);
+
         for(BlueArrows b: movingArrows)
             b.draw(g2);
 
+        g2.setColor(Color.red);
+          g2.setFont(new Font("Arial", Font.BOLD,50));
+        g2.drawString("Score: " + counter * 100 , 700,500);
+        //g2.drawString(counter,900, 50);
 
 
 
@@ -131,27 +128,28 @@ public class Main extends JPanel {
                     }
 
                     for (Sprite spr : movingArrows) {
-                        if (a1 == true && spr.getLoc().y >0 && spr.getLoc().y < 50) {
+                        if (a1 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             if (spr.getLoc().x < 70 && spr.getLoc().x > 0)
                                 movingArrows.remove(spr);
                                 counter++;
                         }
-                        if (a2 == true && spr.getLoc().y >0 && spr.getLoc().y < 50) {
+                        if (a2 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             if (spr.getLoc().x < 230 && spr.getLoc().x > 180)
                                 movingArrows.remove(spr);
                             counter++;
                         }
-                        if (a3 == true && spr.getLoc().y >0 && spr.getLoc().y < 50) {
+                        if (a3 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             if (spr.getLoc().x < 460 && spr.getLoc().x > 420)
                                 movingArrows.remove(spr);
                             counter++;
                         }
-                        if (a4 == true && spr.getLoc().y >0 && spr.getLoc().y < 50) {
+                        if (a4 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             if (spr.getLoc().x < 690 && spr.getLoc().x > 630)
                                 movingArrows.remove(spr);
                             counter++;
                         }
                         System.out.println(counter);
+
 
                     }
 

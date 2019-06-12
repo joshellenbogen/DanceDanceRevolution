@@ -53,7 +53,7 @@ public class Main extends JPanel {
         String aLot = "./res/ALot.mp3";
         String love = "./res/ILoveIt.mp3";
         String hey = "./res/HeyYa.mp3";
-        Media song = new Media(new File(hey).toURI().toString());
+        Media song = new Media(new File(love).toURI().toString());
         mediaPlayer = new MediaPlayer(song);
         mediaPlayer.play();
 
@@ -97,7 +97,6 @@ public class Main extends JPanel {
         g2.setColor(Color.red);
           g2.setFont(new Font("Arial", Font.BOLD,50));
         g2.drawString("Score: " + counter * 100 , 700,500);
-        //g2.drawString(counter,900, 50);
 
 
 
@@ -130,23 +129,27 @@ public class Main extends JPanel {
                     for (Sprite spr : movingArrows) {
                         if (a1 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             if (spr.getLoc().x < 70 && spr.getLoc().x > 0)
-                                movingArrows.remove(spr);
                                 counter++;
+                            movingArrows.remove(spr);
+
                         }
                         if (a2 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             if (spr.getLoc().x < 230 && spr.getLoc().x > 180)
-                                movingArrows.remove(spr);
                             counter++;
+                            movingArrows.remove(spr);
+
                         }
                         if (a3 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             if (spr.getLoc().x < 460 && spr.getLoc().x > 420)
-                                movingArrows.remove(spr);
                             counter++;
+                            movingArrows.remove(spr);
+
                         }
                         if (a4 == true && spr.getLoc().y >0 && spr.getLoc().y < 70) {
                             if (spr.getLoc().x < 690 && spr.getLoc().x > 630)
-                                movingArrows.remove(spr);
                             counter++;
+                            movingArrows.remove(spr);
+
                         }
                         System.out.println(counter);
 
